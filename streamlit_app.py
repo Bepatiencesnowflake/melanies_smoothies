@@ -13,21 +13,16 @@ session = cnx.session()
 # session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col("FRUIT_NAME"))
 
-#st.dataframe(data=my_dataframe, use_container_width=True)
-
-
 ingredients_list = st.multiselect(
     'Choose Upto 5 Ingredients:'
     ,my_dataframe)
-
-
 
 if ingredients_list:
     sqlstatement = ''
     ingredients_string=''
     for  furit_choosen in ingredients_list:
         ingredients_string +=   furit_choosen + '    ';
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width= True)
         
     sqlstatement = """ insert into smoothies.public.orders(ingredients)
