@@ -20,12 +20,16 @@ ingredients_list = st.multiselect(
     'Choose Upto 5 Ingredients:'
     ,my_dataframe)
 
+
+
 if ingredients_list:
     sqlstatement = ''
     ingredients_string=''
     for  furit_choosen in ingredients_list:
         ingredients_string +=   furit_choosen + '    ';
-
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_widt
+        
     sqlstatement = """ insert into smoothies.public.orders(ingredients)
                 values ('""" + ingredients_string + """')""";
 
@@ -37,7 +41,16 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
 
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 # st.text(fruityvice_response.json())
-fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+#fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+
+
+
+
+
+
+
+
+
 
