@@ -22,7 +22,8 @@ if ingredients_list:
     ingredients_string=''
     for  furit_choosen in ingredients_list:
         ingredients_string +=   furit_choosen + ' '     
-        st.write(fruit_choosen)
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width= True)
         
     sqlstatement = """ insert into smoothies.public.orders(ingredients)
                 values ('""" + ingredients_string + """')""";
@@ -45,7 +46,8 @@ if ingredients_list:
 
 
 
-
+#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/wat
+#fv_df = st.dataframe(data=fruityvice_response.json(), use_container_widt
 
 
 
