@@ -20,10 +20,10 @@ ingredients_list = st.multiselect(
 if ingredients_list:
     sqlstatement = ''
     ingredients_string=''
-    for  furit_choosen in ingredients_list:
+    for  fruit_choosen in ingredients_list:
         ingredients_string +=   furit_choosen + ' '  
         st.subheader(fruit_choosen + ' Nutrition Information')
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choosen)
         fv_df = st.dataframe(data=fruityvice_response.json(), use_container_width= True)
         
     sqlstatement = """ insert into smoothies.public.orders(ingredients)
